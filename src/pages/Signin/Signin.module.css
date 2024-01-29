@@ -1,0 +1,59 @@
+.root {
+	display: flex;
+	justify-content: space-evenly;
+}
+.left {
+	align-items: center;
+	justify-content: center;
+	display: flex;
+}
+.right {
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+	border: 2px solid #aecc70;
+}
+.right form {
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+.right input {
+	background-color: #dbdbdb;
+	margin: 2vh 2vw;
+	padding: 1vh;
+	border-radius: 3px;
+}
+
+.right button {
+	text-align: center;
+	font-size: 1.125rem; /* Assuming default font size of 16px */
+	color: #d7e7be;
+	cursor: pointer;
+	background-color: #a5ca63;
+	padding: 0.5vh 1vw;
+	border-radius: 3px;
+}
+
+.divider {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 5px;
+	width: 90%;
+}
+.line {
+	display: block;
+	width: 100%;
+	height: 1px;
+	background-color: #bababa;
+}
+
+.or {
+	margin: 0 5px;
+	font-size: 14px;
+	color: #333;
+}
