@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import baseURL from "../../baseURL";
 
 const Signin = () => {
-	console.log(baseURL.toString());
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
