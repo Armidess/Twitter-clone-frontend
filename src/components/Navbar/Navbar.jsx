@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useLocation } from "react-router-dom";
 import UserPlaceholder from "../UserPlaceholder/UserPlaceholder";
+import baseURL from "../../baseURL";
 
 const Navbar = () => {
 	const [userData, setUserData] = useState(null);
@@ -18,9 +19,9 @@ const Navbar = () => {
 		if (event.key === "Enter") {
 			try {
 				const userName = event.target.value;
-				const uID = await axios.get(`/users/search/${userName}`);
+				const uID = await axios.get(`${baseURL}/users/search/${userName}`);
 				inputRef.current.value = "";
-				navigate(`/profile/${uID.data}`);
+				navigate(`${baseURL}/profile/${uID.data}`);
 			} catch (err) {
 				alert("No User Found");
 			}

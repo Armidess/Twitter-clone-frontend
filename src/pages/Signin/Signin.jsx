@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
-import style from "./Signin.module.css";
 import { useDispatch } from "react-redux";
 import { loginStart, loginSuccess, loginFailed } from "../../redux/userSlice";
 
 import { useNavigate } from "react-router-dom";
+import baseURL from "../../baseURL";
 
 const Signin = () => {
+	console.log(baseURL.toString());
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -17,8 +18,16 @@ const Signin = () => {
 		e.preventDefault();
 		dispatch(loginStart());
 		try {
-			const res = await axios.post("/auth/signin", { username, password });
+			const res = await axios.post(
+				`
+				${baseURL}/auth/signin`,
+				{
+					username,
+					password,
+				}
+			);
 			dispatch(loginSuccess(res.data));
+			console.log(res.data);
 			navigate("/");
 		} catch (err) {
 			dispatch(loginFailed());

@@ -3,6 +3,7 @@ import TimelineTweet from "../TimelineTweet/TimelineTweet";
 
 import { useSelector } from "react-redux";
 import axios from "axios";
+import baseURL from "../../baseURL";
 
 const MainTweet = () => {
 	const [tweetText, setTweetText] = useState("");
@@ -25,7 +26,7 @@ const MainTweet = () => {
 				}
 			}
 
-			await axios.post("/tweets", {
+			await axios.post(`${baseURL}/tweets`, {
 				userId: currentUser._id,
 				description: tweetText,
 				tags: tags,

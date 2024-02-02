@@ -3,6 +3,7 @@ import axios from "axios";
 
 import { useSelector } from "react-redux";
 import Tweet from "../Tweet/Tweet";
+import baseURL from "../../baseURL";
 
 const TimelineTweet = () => {
 	const [timeLine, setTimeLine] = useState(null);
@@ -13,7 +14,7 @@ const TimelineTweet = () => {
 		const fetchData = async () => {
 			try {
 				const timelineTweets = await axios.get(
-					`/tweets/timeline/${currentUser._id}`
+					`${baseURL}/tweets/timeline/${currentUser._id}`
 				);
 				timelineTweets.data.sort((a, b) => {
 					return new Date(b.createdAt) - new Date(a.createdAt); // Descending order

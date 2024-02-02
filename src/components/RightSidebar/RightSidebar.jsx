@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import baseURL from "../../baseURL";
 
 const RightSidebar = () => {
 	const [trendingTweets, setTrendingTweets] = useState(null);
 	useEffect(() => {
 		const fetchTrendingTweets = async () => {
-			const result = await axios.get("/tweets/trending");
+			const result = await axios.get(`${baseURL}/tweets/trending`);
 			setTrendingTweets(result.data);
 		};
 		fetchTrendingTweets();

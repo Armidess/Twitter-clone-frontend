@@ -9,6 +9,7 @@ import axios from "axios";
 import Tweet from "../../components/Tweet/Tweet";
 
 import { following } from "../../redux/userSlice";
+import baseURL from "../../baseURL";
 
 const Profile = () => {
 	const [open, setOpen] = useState(false);
@@ -22,8 +23,8 @@ const Profile = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const userTweets = await axios.get(`/tweets/user/all/${id}`);
-				const userProfile = await axios.get(`/users/find/${id}`);
+				const userTweets = await axios.get(`${baseURL}/tweets/user/all/${id}`);
+				const userProfile = await axios.get(`${baseURL}/users/find/${id}`);
 				userTweets.data.sort((a, b) => {
 					return new Date(b.createdAt) - new Date(a.createdAt); // Descending order
 				});
@@ -40,7 +41,7 @@ const Profile = () => {
 	const handleFollow = async () => {
 		if (!currentUser.following.includes(id)) {
 			try {
-				await axios.put(`/users/follow/${id}`, {
+				await axios.put(`${baseURL}/users/follow/${id}`, {
 					id: currentUser._id,
 				});
 				dispatch(following(id));
@@ -49,7 +50,7 @@ const Profile = () => {
 			}
 		} else {
 			try {
-				await axios.put(`/users/unfollow/${id}`, {
+				await axios.put(`${baseURL}/users/unfollow/${id}`, {
 					id: currentUser._id,
 				});
 

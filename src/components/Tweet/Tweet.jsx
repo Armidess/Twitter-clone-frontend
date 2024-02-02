@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import baseURL from "../../baseURL";
 
 const Tweet = ({ tweet, setData }) => {
 	const { currentUser } = useSelector((state) => state.user);
@@ -21,7 +22,9 @@ const Tweet = ({ tweet, setData }) => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const findUser = await axios.get(`/users/find/${tweet.userId}`);
+				const findUser = await axios.get(
+					`${baseURL}/users/find/${tweet.userId}`
+				);
 
 				setUserData(findUser.data);
 			} catch (err) {
@@ -35,24 +38,26 @@ const Tweet = ({ tweet, setData }) => {
 		e.preventDefault();
 
 		try {
-			await axios.put(`/tweets/${tweet._id}/like`, {
+			await axios.put(`${baseURL}/tweets/${tweet._id}/like`, {
 				id: currentUser._id,
 			});
 
 			if (location.includes("profile")) {
-				const newData = await axios.get(`/tweets/user/all/${id}`);
+				const newData = await axios.get(`${baseURL}/tweets/user/all/${id}`);
 				newData.data.sort((a, b) => {
 					return new Date(b.createdAt) - new Date(a.createdAt); // Descending order
 				});
 				setData(newData.data);
 			} else if (location.includes("explore")) {
-				const newData = await axios.get(`/tweets/explore`);
+				const newData = await axios.get(`${baseURL}/tweets/explore`);
 				newData.data.sort((a, b) => {
 					return new Date(b.createdAt) - new Date(a.createdAt); // Descending order
 				});
 				setData(newData.data);
 			} else {
-				const newData = await axios.get(`/tweets/timeline/${currentUser._id}`);
+				const newData = await axios.get(
+					`${baseURL}/tweets/timeline/${currentUser._id}`
+				);
 				newData.data.sort((a, b) => {
 					return new Date(b.createdAt) - new Date(a.createdAt); // Descending order
 				});

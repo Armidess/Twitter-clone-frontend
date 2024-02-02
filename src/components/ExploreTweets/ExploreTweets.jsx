@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Tweet from "../Tweet/Tweet";
+import baseURL from "../../baseURL";
 
 const ExploreTweets = () => {
 	const [explore, setExplore] = useState(null);
@@ -11,7 +12,7 @@ const ExploreTweets = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const exploreTweets = await axios.get("/tweets/explore");
+				const exploreTweets = await axios.get(`${baseURL}/tweets/explore`);
 				exploreTweets.data.sort((a, b) => {
 					return new Date(b.createdAt) - new Date(a.createdAt); // Descending order
 				});

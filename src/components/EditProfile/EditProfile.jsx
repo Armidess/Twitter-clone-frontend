@@ -13,6 +13,7 @@ import {
 } from "firebase/storage";
 
 import app from "../../firebase.js";
+import baseURL from "../../baseURL";
 
 const EditProfile = ({ setOpen }) => {
 	const { currentUser } = useSelector((state) => state.user);
@@ -53,9 +54,12 @@ const EditProfile = ({ setOpen }) => {
 				// Upload completed successfully, now we can get the download URL
 				getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
 					try {
-						const updateProfile = await axios.put(`/users/${currentUser._id}`, {
-							profilePicture: downloadURL,
-						});
+						const updateProfile = await axios.put(
+							`${baseURL}/users/${currentUser._id}`,
+							{
+								profilePicture: downloadURL,
+							}
+						);
 
 						console.log(updateProfile);
 					} catch (error) {
@@ -69,9 +73,9 @@ const EditProfile = ({ setOpen }) => {
 	};
 
 	const handleDelete = async () => {
-		await axios.delete(`/users/${currentUser._id}`);
+		await axios.delete(`${baseURL}/users/${currentUser._id}`);
 		dispatch(logout());
-		navigate("/signin");
+		navigate(`${baseURL}/signin`);
 	};
 
 	useEffect(() => {

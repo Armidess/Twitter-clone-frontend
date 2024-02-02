@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { loginStart, loginSuccess, loginFailed } from "../../redux/userSlice";
 
 import { useNavigate } from "react-router-dom";
+import baseURL from "../../baseURL";
 
 const Signup = () => {
 	const [username, setUsername] = useState("");
@@ -19,7 +20,7 @@ const Signup = () => {
 		dispatch(loginStart());
 
 		try {
-			const res = await axios.post("/auth/signup", {
+			const res = await axios.post(`${baseURL}/auth/signup`, {
 				username,
 				email,
 				password,
