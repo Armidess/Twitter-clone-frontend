@@ -21,7 +21,7 @@ const Navbar = () => {
 				const userName = event.target.value;
 				const uID = await axios.get(`${baseURL}/users/search/${userName}`);
 				inputRef.current.value = "";
-				navigate(`${baseURL}/profile/${uID.data}`);
+				navigate(`/profile/${uID.data}`);
 			} catch (err) {
 				alert("No User Found");
 			}
