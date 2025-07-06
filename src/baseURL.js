@@ -1,2 +1,2 @@
-const baseURL = "https://twitter-clone-api-px42.onrender.com/mindhive/api";
+const baseURL = "http://3.6.195.57/mindhive/api";
 export default baseURL;
