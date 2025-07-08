@@ -1,2 +1,2 @@
-const baseURL = "http://3.6.195.57/mindhive/api";
+const baseURL = "https://armides.duckdns.org/mindhive/api";
 export default baseURL;
